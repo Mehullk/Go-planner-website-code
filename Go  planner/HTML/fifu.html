@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1f1f1f;
+            color: #fff;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Product Card Styles */
+        .product {
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .product h2 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .product p {
+            font-size: 14px;
+        }
+
+        .product button {
+            background-color: #ff7f50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .product button:hover {
+            background-color: #e6603e;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        /* Product Detail Styles */
+        .product-details {
+            display: none;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .product-details img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .product-details h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .product-details p {
+            font-size: 16px;
+        }
+
+        .product-details button {
+            background-color: #ff7f50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .product-details button:hover {
+            background-color: #e6603e;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Explore</h1>
+    </header>
+   <div class="container">
+     <form>
+      <!-- Add this select element to your HTML -->
+<select id="sort-select" onchange="sortProducts()">
+    <option value="default">Sort by</option>
+    <option value="low-to-high">Price: Low to High</option>
+    <option value="high-to-low">Price: High to Low</option>
+</select>
+     </form>
+   </div>
+    
+
+    <div class="container">
+        <!-- Listings Page -->
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <h2>Hotel Big Bar</h2>
+            <p>Description of Product 1.</p>
+            <p>Price: $50.00</p>
+            <button onclick="showProduct(1)">View Details</button>
+        </div>
+
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <h2>Blue Beach</h2>
+            <p>Description of Product 2.</p>
+            <p>Price: $60.00</p>
+            <button onclick="showProduct(2)">View Details</button>
+        </div>
+        
+        <div class="product">
+            <img src="product3.jpg" alt="Product 3">
+            <h2>Cafe shafe</h2>
+            <p>Description of Product 3.</p>
+            <p>Price: $60.00</p>
+            <button onclick="showProduct(3)">View Details</button>
+        </div>
+        
+        <div class="product">
+            <img src="product4.jpg" alt="Product 4">
+            <h2>Waffle Bites</h2>
+            <p>Description of Product 4.</p>
+            <p>Price: $60.00</p>
+            <button onclick="showProduct(4)">View Details</button>
+        </div>
+        <!-- Add more product listings here -->
+    </div>
+
+    <!-- Product Detail Pages -->
+    <div class="product-details" id="product1">
+        <img src="product1.jpg" alt="Product 1">
+        <h2>Hotel Big Bar</h2>
+        <p>Description of Product 1.</p>
+        <p>Price: $50.00</p>
+        <button onclick="showListings()">Back to Listings</button>
+    </div>
+
+    <div class="product-details" id="product2">
+        <img src="product2.jpg" alt="Product 2">
+        <h2>Blue Beach</h2>
+        <p>Description of Product 2.</p>
+        <p>Price: $60.00</p>
+        <button onclick="showListings()">Back to Listings</button>
+    </div>
+    
+    <div class="product-details" id="product3">
+        <img src="product2.jpg" alt="Product 3">
+        <h2>Cafe Shafe</h2>
+        <p>Description of Product 3.</p>
+        <p>Price: $60.00</p>
+        <button onclick="showListings()">Back to Listings</button>
+    </div>
+    
+    <div class="product-details" id="product4">
+        <img src="product2.jpg" alt="Product 4">
+        <h2>Waffle Bites</h2>
+        <p>Description of Product 4.</p>
+        <p>Price: $60.00</p>
+        <button onclick="showListings()">Back to Listings</button>
+    </div>
+
+    <!-- JavaScript for switching between pages -->
+    <script>
+        function showProduct(productId) {
+            document.getElementById(`product${productId}`).classList.add('active');
+            document.querySelector('.container').style.display = 'none';
+        }
+
+        function showListings() {
+            document.querySelectorAll('.product-details.active').forEach((detail) => {
+                detail.classList.remove('active');
+            });
+            document.querySelector('.container').style.display = 'flex';
+        }
+        
+        // Add this JavaScript code to your existing script
+function sortProducts() {
+    const container = document.querySelector('.container');
+    const select = document.getElementById('sort-select');
+    const products = Array.from(document.querySelectorAll('.product'));
+
+    if (select.value === 'low-to-high') {
+        products.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector('p:last-child').textContent.replace('$', ''));
+            const priceB = parseFloat(b.querySelector('p:last-child').textContent.replace('$', ''));
+            return priceA - priceB;
+        });
+    } else if (select.value === 'high-to-low') {
+        products.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector('p:last-child').textContent.replace('$', ''));
+            const priceB = parseFloat(b.querySelector('p:last-child').textContent.replace('$', ''));
+            return priceB - priceA;
+        });
+    }
+
+    products.forEach(product => container.appendChild(product));
+}
+
+    </script>
+
+</body></html>
+    

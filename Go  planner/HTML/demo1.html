@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Signup</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 100px auto;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <div class="options">
+            <label>
+                <input type="checkbox" id="signupCheckbox"> Sign Up
+            </label>
+            <label>
+                <input type="checkbox" id="loginCheckbox"> Login
+            </label>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const signupCheckbox = document.getElementById("signupCheckbox");
+            const loginCheckbox = document.getElementById("loginCheckbox");
+
+            signupCheckbox.addEventListener("change", function () {
+                if (signupCheckbox.checked) {
+                    window.location.href = "signup_login.html";
+                }
+            });
+
+            loginCheckbox.addEventListener("change", function () {
+                if (loginCheckbox.checked) {
+                    window.location.href = "signup_login.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
